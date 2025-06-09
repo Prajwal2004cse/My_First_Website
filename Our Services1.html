@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Services</title>
+  <style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f5f5 url('/images/svslogo.jpeg') no-repeat center center;
+    background-size: 300px;
+    background-attachment: fixed;
+    opacity: 1;
+  }
+
+  .our-services {
+    padding: 40px 20px;
+    text-align: center;
+    font-family: Angelos-Persona;
+    overflow: visible !important;
+    position: relative;
+    z-index: 0;
+  }
+
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #8b0e1a;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+
+  .services-header h2 {
+    flex: 1;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .services-header .logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+  }
+
+  .services-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    overflow: visible !important;
+    position: relative;
+    z-index: 0;
+  }
+
+  .service-card {
+  z-index: 0;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  width: 280px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.2); /* Background shadow */
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 20px;
+  display: inline-block;
+  position: relative;
+  border: 2px solid #007BFF; /* Permanent blue border */
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2), 0 4px 8px rgba(0,0,0,0.3); /* Enhanced shadow on hover */
+  z-index: 1;
+  border: 2px solid #007BFF; /* Maintain blue border on hover */
+}
+
+  .service-card .card-logo {
+    display: block;
+    width: 100px;
+    height: auto;
+    margin: 0 auto 10px;
+  }
+
+  .benefits-box {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 10px;
+  width: 250px;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-radius: 15px;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.3s ease; /* Added border-color transition */
+  pointer-events: none;
+}
+
+.benefits-box:hover {
+  border-color: #007BFF; /* Blue border on hover */
+}
+
+  /* Updated rule for specified services to hover left */
+  .service-card[data-service="Voter ID"] .benefits-box,
+  .service-card[data-service="Ration Card"] .benefits-box,
+  .service-card[data-service="Vehicle Road Tax"] .benefits-box,
+  .service-card[data-service="Marriage Certificate"] .benefits-box,
+  .service-card[data-service="Tailoring Certificate"] .benefits-box,
+  .service-card[data-service="GST"] .benefits-box,
+  .service-card[data-service="Banking Services"] .benefits-box,
+  .service-card[data-service="Travel Tickets"] .benefits-box,
+  .service-card[data-service="Temple Services"] .benefits-box {
+    left: auto;
+    right: 100%;
+    margin-left: 0;
+    margin-right: 10px;
+    transform: translateX(-10px);
+  }
+
+  .service-card[data-service="Voter ID"]:hover .benefits-box,
+  .service-card[data-service="Ration Card"]:hover .benefits-box,
+  .service-card[data-service="Vehicle Road Tax"]:hover .benefits-box,
+  .service-card[data-service="Marriage Certificate"]:hover .benefits-box,
+  .service-card[data-service="Tailoring Certificate"]:hover .benefits-box,
+  .service-card[data-service="GST"]:hover .benefits-box,
+  .service-card[data-service="Banking Services"]:hover .benefits-box,
+  .service-card[data-service="Travel Tickets"]:hover .benefits-box,
+  .service-card[data-service="Temple Services"]:hover .benefits-box {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  .service-card:hover .benefits-box {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+    display: block;
+  }
+
+  .service-title {
+    font-weight: bold;
+  }
+
+  .service-card h3 {
+    background: #b31b1b;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+
+  .service-card ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .service-card li {
+    margin: 8px 0;
+    color: #333;
+    font-size: 15px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .services-header {
+      flex-direction: column;
+    }
+
+    .services-header h2 {
+      margin: 10px 0;
+    }
+
+    .services-cards {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .search-bar {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  #searchInput {
+    width: 80%;
+    max-width: 500px;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid #8b0e1a;
+    border-radius: 30px;
+    outline: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+  }
+
+  #searchInput:focus {
+    border-color: #b31b1b;
+    box-shadow: 0 4px 20px rgba(179, 27, 27, 0.3);
+  }
+
+  .marquee-section {
+  background: linear-gradient(to right, #d9272e, #911a1f);
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+  </style>
+</head>
+<body>
+  <section class="our-services">
+    <div class="services-header">
+      <img src="/images/svslogo.jpeg" alt="Logo 1" class="logo">
+      <h2><u>Our Services</u></h2>
+      <img src="/images/csclogo.webp" alt="Logo 2" class="logo">
+    </div>
+    <!-- Marquee -->
+    <div class="marquee-section">
+  <marquee 
+    onmouseover="this.stop();" 
+    onmouseout="this.start();"
+  >
+    <span class="blink"><a href="https://chat.whatsapp.com/BjLqE5m6WyaFC8fAsj47Wg" style="color: #ddd;"> 📢 For more govt job updates / govt Scheams / Current Affairs Join our Whatsapp group Click here </a></span>
+  </marquee>
+</div>
+
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search services here..." onkeyup="filterServices()" />
+    </div>
+
+    <div class="services-cards">
+      <div class="service-card" data-service="Aadhaar Card">
+        <img src="/images/Aadhaar.jpg" alt="Aadhaar Card Logo" class="card-logo">
+        <h3 class="service-title">Aadhaar Card</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Aadhaar Card address change</li>
+          <li>▶ Original Aadhaar Print</li>
+          <li>▶ Aadhaar PVC Card Order</li>
+          <li>▶ Aadhaar Smart Card Print</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="PAN Card">
+        <img src="/images/Pan Card.jpg" alt="Pan Card Logo" class="card-logo">
+        <h3 class="service-title">Pan Card</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ New Pan Card</li>
+          <li>▶ Minor Pan Card</li>
+          <li>▶ Pan Card Correction</li>
+          <li>▶ Lost Pan Card</li>
+          <li>▶ E-Pan Card</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Voter ID">
+        <img src="/images/Voter ID.jpg" alt="Voter ID Logo" class="card-logo">
+        <h3 class="service-title">Voter ID</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ New Voter ID</li>
+          <li>▶ Voter ID Correction</li>
+          <li>▶ Voter ID Transfer</li>
+          <li>▶ Voter ID Smart Card Print</li>
+          <li>▶ Lost Voter ID</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Health Card">
+        <img src="/images/Health Card1.jpg" alt="Health Card Logo" class="card-logo">
+        <h3 class="service-title">Health Card</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ New Ayushman Card</li>
+          <li>▶ Ayushman Card Print</li>
+          <li>▶ Ayushman Card Original</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Passport">
+        <img src="/images/Passport.jpg" alt="Passport Logo" class="card-logo">
+        <h3 class="service-title">Passport</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ New Passport</li>
+          <li>▶ Passport Renewal</li>
+          <li>▶ 60 pgs Passport</li>
+          <li>▶ 36 pgs Passport</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Ration Card">
+        <img src="/images/Ration Card.jpg" alt="Ration Card Logo" class="card-logo">
+        <h3 class="service-title">Ration Card</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ New Ration Card</li>
+          <li>▶ Ration Card Correction</li>
+          <li>▶ Ration Card deletion</li>
+          <li>▶ Member add in Ration Card</li>
+          <li>▶ Member deletion in Ration Card</li>
+          <li>▶ Ration Card Print</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Health Insurance">
+        <img src="/images/Health Insurance1.jpg" alt="Health Insurance Logo" class="card-logo">
+        <h3 class="service-title">Health Insurance</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Star Health Insurance</li>
+          <li>▶ SBI Health Insurance</li>
+          <li>▶ Chola MS Health Insurance</li>
+          <li>▶ Group Health Insurance</li>
+          <li>▶ Chola MS Health Insurance</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Vehicle Insurance">
+        <img src="/images/Vehicle Insurance.jpg" alt="Health Insurance Logo" class="card-logo">
+        <h3 class="service-title">Vehicle Insurance</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ All Types of Vehicle Insurance</li>
+          <li>▶ 2 Wheeler (Bike)Insurance</li>
+          <li>▶ 3 Wheeler (Auto)Insurance</li>
+          <li>▶ 4 Wheeler (Car)Insurance</li>
+          <li>▶ Passenger Carrying Vehicle Insurance</li>
+          <li>▶ Heavy Vehicle Insurance</li>
+          <li>▶ Tractor/JCB Insurance</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Vehicle Road Tax">
+        <img src="/images/Vehicle Road Tax.jpg" alt="Vehicle Road Tax Logo" class="card-logo">
+        <h3 class="service-title">Vehicle Road Tax</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Kerala TP</li>
+          <li>▶ Tamil-Nadu TP</li>
+          <li>▶ Andra-Pradesh TP</li>
+          <li>▶ Goa TP</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Food Licence">
+        <img src="/images/Food Licence.jpg" alt="Food Licence Logo" class="card-logo">
+        <h3 class="service-title">Food Licence</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Basic Food Licence</li>
+          <li>▶ State Food Licence</li>
+          <li>▶ Central Food Licence</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="RTO Licence">
+        <img src="/images/RTO.jpg" alt="RTO Logo" class="card-logo">
+        <h3 class="service-title">RTO Licence(Coming Soon..)</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Lerner Licence</li>
+          <li>▶ Driving Licence</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Marriage Certificate">
+        <img src="/images/Marriage cert.jpg" alt="Marriage Certificate Logo" class="card-logo">
+        <h3 class="service-title">Marriage Certificate</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>Bride Aadhaar Card</li>
+          <li>Bride 10th Certificate</li>
+          <li>Bride witness(Father & Mother)</li>
+          <li>Bride Groom Aadhaar Card</li>
+          <li>Bride Groom 10th Certificate</li>
+          <li>Bride witness(Father & Mother)</li>
+          <li>Aadhaar linked mobile for otp</li>
+          <li>Photo</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Police Verification Certificate">
+        <img src="/images/PVC.jpg" alt="Police Verification Certificate Logo" class="card-logo">
+        <h3 class="service-title">Police Verification Certificate(PVC)</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ PVC for Job Verification</li>
+          <li>▶ PVC for Security/Cooli etc</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Bhoomi Services">
+        <img src="/images/Bhoomi.jpg" alt="Bhoomi Logo" class="card-logo">
+        <h3 class="service-title">Bhoomi Services</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Encumbrance Certificate (EC)</li>
+          <li>▶ RTC/Pahani</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Tailoring Certificate">
+        <img src="/images/Tailoring cert.jpg" alt="Bhoomi Logo" class="card-logo">
+        <h3 class="service-title">Tailoring Certificate</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Usha Tailoring Certificate</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Loans">
+        <img src="/images/Loans.jpg" alt="Loans Logo" class="card-logo">
+        <h3 class="service-title">Loans</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Personal Loans</li>
+          <li>▶ Business Loans</li>
+          <li>▶ Education Loans</li>
+          <li>▶ Home Loans</li>
+          <li>▶ Loan Against Property(LAP)</li>
+          <li>▶ Loan against existing Vehicle</li>
+          <li>▶ Three Wheeler Loans</li>
+          <li>▶ Tractor Loans</li>
+          <li>▶ Two Wheeler Loans</li>
+          <li>▶ Used Commercial Vehicle Loans</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Vehicle Insurance">
+        <img src="/images/Vehicle Insurance2.jpg" alt="Vehicle Insurance2 Logo" class="card-logo">
+        <h3 class="service-title">Vehicle Insurance</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ All Types of Vehicle Insurance</li>
+          <li>▶ 2 Wheeler (Bike)Insurance</li>
+          <li>▶ 3 Wheeler (Auto)Insurance</li>
+          <li>▶ 4 Wheeler (Car)Insurance</li>
+          <li>▶ Passenger Carrying Vehicle Insurance</li>
+          <li>▶ Heavy Vehicle Insurance</li>
+          <li>▶ Tractor/JCB Insurance</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Vehicle Road Tax">
+        <img src="/images/Vehicle Road Tax.jpg" alt="Vehicle Road Tax Logo" class="card-logo">
+        <h3 class="service-title">Vehicle Road Tax</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Kerala TP</li>
+          <li>▶ Tamil-Nadu TP</li>
+          <li>▶ Andra-Pradesh TP</li>
+          <li>▶ Goa TP</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="RTO Services">
+        <img src="/images/RTO.jpg" alt="RTO Logo" class="card-logo">
+        <h3 class="service-title">RTO Services (Comming Soon...!)</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Transfer Ownership</li>
+          <li>▶ Change of address</li>
+          <li>▶ Application for NOC</li>
+          <li>▶ RC Duplicate & Surrender</li>
+          <li>▶ Apply for LL</li>
+          <li>▶ Apply for New/Renewal DL</li>
+          <li>▶ Apply for Duplicate DL</li>
+          <li>▶ DL Extract</li>
+          <li>▶ HSRP Number Plate</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Income Tax Filing">
+        <img src="/images/Income Tax2.jpg" alt="Income Tax Logo" class="card-logo">
+        <h3 class="service-title">Income Tax Filing</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Salaried ITR filing</li>
+          <li>▶ Self-Employed ITR filing</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="GST">
+        <img src="/images/GST.jpg" alt="Income Tax Logo" class="card-logo">
+        <h3 class="service-title">GST</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ New GST</li>
+          <li>▶ Changes in GST</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Vehicle Road Tax">
+        <img src="/images/Vehicle Road Tax.jpg" alt="Income Tax Logo" class="card-logo">
+        <h3 class="service-title">Vehicle Road Tax</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Kerala TP</li>
+          <li>▶ Tamil-Nadu TP</li>
+          <li>▶ Andra-Pradesh TP</li>
+          <li>▶ Goa TP</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Provident Funds (P.F) Services">
+        <img src="/images/EPFO2.jpg" alt="PF Logo" class="card-logo">
+        <h3 class="service-title">Provident Funds (P.F) Services</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Find UAN Number</li>
+          <li>▶ UAN Activation</li>
+          <li>▶ UAN Password Change</li>
+          <li>▶ PF Profile Update</li>
+          <li>▶ PF KYC</li>
+          <li>▶ PF Nomination</li>
+          <li>▶ PF Advance Apply</li>
+          <li>▶ PF Transfer</li>
+          <li>▶ PF Settlement</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Banking Services">
+        <img src="/images/Banking Serivices.jpg" alt="Banking Serivices Logo" class="card-logo">
+        <h3 class="service-title">Banking Services</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Bank Account Opening</li>
+          <li>▶ Credit Card</li>
+          <li>▶ Balance Enquiry</li>
+          <li>▶ National Pension Scheme</li>
+          <li>▶ CIBIL Report</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Nadakacheri Services">
+        <img src="/images/Nadakacheri Services.png" alt="Nadakacheri Services Logo" class="card-logo">
+        <h3 class="service-title">Nadakacheri Services</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Cast & Income Certificate</li>
+          <li>▶ Residential Certificate</li>
+          <li>▶ OBC Certificate (Central)</li>
+          <li>▶ Widow Certificate</li>
+          <li>▶ Domicile Certificate</li>
+          <li>▶ Widow Pension</li>
+          <li>▶ Farmer Widow Pension</li>
+          <li>▶ Old Age Pension</li>
+          <li>▶ Sandhya Suraksha Yojane</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Cards">
+        <img src="/images/Cards.jpg" alt="Cards Logo" class="card-logo">
+        <h3 class="service-title">Cards</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ BAJAJ Insta EMI Card</li>
+          <li>▶ Axis Bank Credit Card</li>
+          <li>▶ Punjab National Bank Credit Card</li>
+          <li>▶ HDFC Bank Credit Card</li>
+          <li>▶ LIC Bank Credit Card</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Travel Tickets">
+        <img src="/images/Travel Services.jpg" alt="Travel Serivices Logo" class="card-logo">
+        <h3 class="service-title">Travel Tickets</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Train Tickets</li>
+          <li>▶ Flight Tickets</li>
+          <li>▶ Bus Tickets</li>
+          <li>▶ Travel Packages</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Govt/Pvt Schemes">
+        <img src="/images/Govt-Pvt Schemes.jpg" alt="Govt-Pvt Schemes" class="card-logo">
+        <h3 class="service-title">Govt/Pvt Schemes</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ LIC</li>
+          <li>▶ Senior Citizen Card</li>
+          <li>▶ UDID Card</li>
+          <li>▶ E Shram Card</li>
+          <li>▶ Labour Card</li>
+          <li>▶ Tailoring Certificate</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Travel Packages">
+        <img src="/images/Travel Packages.jpg" alt="Travel Packages Logo" class="card-logo">
+        <h3 class="service-title">Travel Packages</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Tirupati Packages</li>
+          <li>▶ Char Dham Yatra Packages</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Temple Services">
+        <img src="/images/Temple Services.jpg" alt="Temple Services Logo" class="card-logo">
+        <h3 class="service-title">Temple Services</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Tirupati Darshana Tickets</li>
+          <li>▶ Sabarimalai Darshana Tickets</li>
+          <li>▶ E-Prasada Order</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Services for Students">
+        <img src="/images/Student Services.jpg" alt="Student Services Logo" class="card-logo">
+        <h3 class="service-title">Services for Students</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ Student Bus Pass</li>
+          <li>▶ Project Works</li>
+        </ul>
+      </div>
+      <div class="service-card" data-service="Other Services">
+        <img src="/images/Other Services.jpg" alt="Other Services Logo" class="card-logo">
+        <h3 class="service-title">Other Services</h3>
+        <div class="benefits-box"></div>
+        <ul>
+          <li>▶ RTC/Pahani</li>
+          <li>▶ Mutation</li>
+          <li>▶ FRUITS ID</li>
+          <li>▶ Rental Agreement</li>
+          <li>▶ Lease Agreement</li>
+          <li>▶ All Bank Statements</li>
+          <li>▶ Laptop Sales & Services</li>
+          <li>▶ System Repair</li>
+          <li>▶ E-Lost Report</li>
+          <li>▶ Computer Education</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  function filterServices() {
+    const input = document.getElementById("searchInput");
+    const filter = input.value.toLowerCase();
+    const cards = document.querySelectorAll(".service-card");
+
+    cards.forEach(card => {
+      const title = card.querySelector("h3").textContent.toLowerCase();
+      const items = Array.from(card.querySelectorAll("li")).map(li => li.textContent.toLowerCase());
+      
+      const isMatch = title.includes(filter) || items.some(item => item.includes(filter));
+
+      card.style.display = isMatch ? "block" : "none";
+    });
+  }
+
+  const benefitsMap = {
+    "Aadhaar Card": [
+      "Aadhaar Card address Change :",
+      " ▶ Bank Passbook with Photo and seal",
+      " ▶ Gas Connection Bill (not more than 3 months)",
+      " ▶ DL / Passport",
+      " ▶ Insurance Policy"
+    ],
+    "PAN Card": [
+      "New Pan Card :",
+      " ▶ Aadhaar Card",
+      " ▶ 2 Passport Size Photo",
+      "Pan Card Correction :",
+      " ▶ Aadhaar Card",
+      " ▶ 2 Passport Size Photo",
+      " ▶ 10th cert/Voter ID/DL/Passport",
+      "Minor Pan Card New :",
+      " ▶ Aadhaar Card",
+      " ▶ 2 Passport Size Photo",
+      " ▶ Parent Aadhaar Card",
+      "Duration:",
+      " ▶ 10-15 working days for new Pan Card(for original Pan card)",
+      " ▶ 15-20 working days for Pan Card Correction(for original Pan card)"
+    ],
+    "Voter ID": [
+      "New Voter ID :",
+      " ▶ Aadhaar Card",
+      " ▶ 1 Passport Size Photo",
+      "Voter ID Correction (Name/DOB/Mobile No/Gender/Photo/Address):",
+      " ▶ Aadhaar Card",
+      " ▶ 1 Passport Size Photo",
+      " ▶ Address Proof (only for address correction)",
+      "Voter ID Smart Card :",
+      " ▶ Aadhaar Card",
+      " ▶ Mobile for OTP",
+      "Duration:",
+      " ▶ 30 working days for new Voter ID and Correction"
+    ],
+    "Health Card": [
+      "--Free of cost--Free of cost--Free of cost--",
+      "New Ayushman Card :",
+      " ▶ Aadhaar Card",
+      " ▶ Ration Card",
+      "Ayushman Card Updation :",
+      " ▶ Aadhaar Card",
+      " ▶ Ration Card",
+      "Charges Applied :",
+      "Ayushman Card Smart Card :",
+      " ▶ Aadhaar Card",
+      " ▶ Mobile for OTP",
+      "Duration:",
+      " ▶ With in 10-15 min",
+      "Note: Candidate is must for live Photo"
+    ],
+    "Passport": [
+      "New Passport (36pgs/60pgs) :",
+      " ▶ Aadhaar Card",
+      " ▶ Pan Card",
+      " ▶ Voter ID",
+      "Passport Renewal :",
+      " ▶ Aadhaar Card",
+      " ▶ Pan Card",
+      " ▶ Voter ID",
+      " ▶ Old Passport",
+      "Tatkal Passport :",
+      " ▶ Aadhaar Card",
+      " ▶ Pan Card",
+      " ▶ Voter ID",
+      "Duration:",
+      " ▶ 10 working days for Tatkal New Passport",
+      " ▶ 15 working days for Normal New Passport"
+    ],
+    "Ration Card": [
+      "New Ration Card (BPL):",
+      " ▶ Aadhaar Card",
+      " ▶ Income Certificate",
+      " ▶ Aadhaar linked mobile",
+      " ▶ Birth Certificate below 5 years old baby",
+      "Duration:",
+      " ▶ Depends up on AHARA dept approval",
+      "New Ration Card (APL) :",
+      " ▶ Aadhaar Card",
+      "Duration:",
+      " ▶ 1 hour for APL Ration Card"
+    ],
+    "Health Insurance": [
+      " ▶ Aadhaar Card",
+      " ▶ Pan Card",
+      " ▶ 1 Passport Size Photo",
+      " ▶ Candidate height & weight",
+      "Duration:",
+      " ▶ Spot Process"
+    ],
+    "Vehicle Insurance": [
+      " ▶ Aadhaar Card",
+      " ▶ Pan Card",
+      " ▶ Old Insurance Policy",
+      "Duration:",
+      " ▶ within 20-30 min",
+      "If old Insurance Policy lapsed inspection is must for 4/6/10 Wheeler & Heavy Vehicles"
+    ],
+    "Vehicle Road Tax": [
+      " ▶ Aadhaar Card",
+      " ▶ RC Card",
+      " ▶ DL",
+      " ▶ Emission Test certificate",
+      "Duration:",
+      " ▶ Within 5 min"
+    ],
+    "Food Licence": [
+      "Both Tatkal & Normal",
+      "New Food Licence (Basic):",
+      " ▶ Aadhaar Card",
+      " ▶ Pan Card",
+      " ▶ Passport Size Photo",
+      "New Food Licence (State) :",
+      " ▶ Aadhaar Card",
+      " ▶ Pan Card",
+      " ▶ Passport Size Photo",
+      " ▶ Business shop Photos",
+      " ▶ Shop Rental Agreement",
+      "New Food Licence (Central) :",
+      " ▶ Aadhaar Card",
+      " ▶ Pan Card",
+      " ▶ Passport Size Photo",
+      " ▶ Business shop Photos",
+      " ▶ Shop Rental Agreement",
+      "Duration:",
+      " ▶ 10 min for Tatkal Licence",
+      " ▶ 15 working days for Normal Licence"
+    ],
+    "RTO Licence": [
+      "Comming Soon....."
+    ],
+    "Marriage Certificate": [
+      " ▶ Bride Aadhaar Card",
+      " ▶ Bride 10th Certificate",
+      " ▶ Bride witness(Father & Mother)",
+      " ▶ Bride Groom Aadhaar Card",
+      " ▶ Bride Groom 10th Certificate",
+      " ▶ Bride witness(Father & Mother)",
+      " ▶ Aadhaar linked mobile for otp",
+      " ▶ Photo",
+      "Duration :",
+      "▶ 1 Month"
+    ],
+    "Police Verification Certificate": [
+      " ▶ Aadhaar Card",
+      " ▶ 1 Passport Size Photo",
+      " ▶ Rental Agreement",
+      "Duration :",
+      "▶ 10 Min"
+    ],
+    "Bhoomi Services": [
+      "Encumbrance Certificate (EC) :",
+      " ▶ Sale Deed/Gift deed",
+      " ▶ Sale Agreement",
+      "Duration:",
+      " ▶ Depends on sub reg office",
+      "RTC/Pahani :",
+      " ▶ Survay Number",
+      "Duration:",
+      " ▶ With in 2 min"
+    ],
+    "Tailoring Certificate": [
+      " ▶ Aadhaar Card",
+      " ▶ E Mail ID",
+      " ▶ Mobile",
+      "Duration:",
+      " ▶ within 10 min"
+    ],
+    "Loans": [
+      "Documents Depends on type of Loan"
+    ],
+    "RTO Services": [
+      "Comming Soon......!"
+    ],
+    "Income Tax Filing": [
+      "ITR Filing for Salaried Persons:",
+      " ▶ Aadhaar Card",
+      " ▶ Pan Card",
+      " ▶ Bank Passbook/Valid Cheque/Valid Statement",
+      " ▶ Form-16 signed by your working company",
+      "ITR Filing for Business Persons:",
+      " ▶ Aadhaar Card",
+      " ▶ Pan Card",
+      " ▶ Bank Passbook"
+    ],
+    "GST": [
+      "Comming Soon......!"
+    ],
+    "Provident Funds (P.F) Services": [
+      " ▶ Aadhaar Card",
+      " ▶ Pan Card",
+      " ▶ Valid Bank Passbook/Valid Cheque Book/Valid Statement",
+      "Doc req for Nomination Filing :",
+      " ▶ Candidate Aadhaar Card",
+      " ▶ Candidate Photo",
+      " ▶ Nominee Aadhaar Card",
+      " ▶ Naominee Photo"
+    ],
+    "Banking Services": [
+      " ▶ Aadhaar Card",
+      " ▶ Pan Card",
+      " ▶ Aadhaar Linked Mobile"
+    ],
+    "Nadakacheri Services": [
+      "Cast & Income Certificate :",
+      " ▶ Aadhaar Card",
+      " ▶ Ration Card",
+      " ▶ TC/Study Certificate",
+      " ▶ Photo",
+      " Relative Cast & Income",
+      " Residential Certificate & Domicel Certificate:",
+      " ▶ Aadhaar Card",
+      " ▶ Ration Card",
+      " ▶ Voter ID",
+      "OBC Certificate :",
+      " ▶ Aadhaar Card",
+      " ▶ Ration Card",
+      " ▶ TC/Study Certificate",
+      " ▶ Photo",
+      " Relative Cast & Income",
+      " Widow Certificate",
+      " ▶ Aadhaar Card",
+      " ▶ Ration Card",
+      " ▶ Husband Death Certificate",
+      " ▶ Voter ID",
+      "Widow Pension & Farmer Widow Pension :",
+      " ▶ Aadhaar Card",
+      " ▶ Voter ID",
+      " ▶ Husband Death Certificate",
+      " ▶ Ration Card",
+      " ▶ Photo",
+      " Old Age Pension & Sandhya Suraksha Yojane :",
+      " ▶ Aadhaar Card",
+      " ▶ Age Certificate",
+      " ▶ Ration Card",
+      " ▶ Photo"
+    ],
+    "Cards": [
+      "▶ Aadhaar Card ",
+      " ▶ Pan Card"
+    ],
+    "Travel Tickets": [
+      " ▶ Train Tickets",
+      " ▶ Flight Tickets",
+      " ▶ Bus Tickets",
+      " ▶ Travel Packages"
+    ],
+    "Govt/Pvt Schemes": [
+      " ▶ Senior Citizen Card",
+      " ▶ Aadhaar Card",
+      " ▶ Age Certificate",
+      " ▶ Ration Card",
+      " ▶ Blood Group",
+      " ▶ Photo",
+      "E-Shram Card",
+      " ▶ Candidate Aadhar Card",
+      " ▶ Candidate Bank Passbook",
+      " ▶ Nominee Aadhaar Card",
+      "Labour Card",
+      " ▶ Candidate Aadhaar Card",
+      " ▶ Family Member Aadhaar Card",
+      " ▶ Bank Passbook",
+      " ▶ Ration Card"
+    ],
+    "Travel Packages": [
+      " General Document : ",
+      " ▶ Aadhaar Card"
+    ],
+    "Temple Services": [
+      "Name",
+      "Address",
+      "Mobile Number"
+    ],
+    "Services for Students": [
+      " Student Bus Pass :",
+      " ▶ Aadhaar Card",
+      " ▶ Photo",
+      " ▶ Fee Recipt"
+    ],
+    "Other Services": [
+      "All Bank Statement :",
+      " ▶ Pan Card",
+      " ▶ Aadhaar Card",
+      " ▶ Account Number",
+      " ▶ Aadhaar Linked Mobile",
+      " ▶ Bank Linked Mobile",
+      "E Lost Report :",
+      " ▶ Aadhaar Card",
+      " ▶ Lost Item Proof",
+      " ▶ Aadhaar Linked Mobile"
+    ]
+  };
+
+  document.querySelectorAll(".service-card").forEach(card => {
+    const serviceName = card.getAttribute("data-service");
+    const benefitsBox = card.querySelector(".benefits-box");
+
+    if (benefitsMap[serviceName]) {
+      benefitsBox.innerHTML = `
+        <strong>Required Documents:</strong>
+        <ul>
+          ${benefitsMap[serviceName].map(b => `<li>${b}</li>`).join("")}
+        </ul>
+      `;
+    }
+  });
+  </script>
+</body>
+</html>

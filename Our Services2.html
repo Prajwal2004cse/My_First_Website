@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Services</title>
+  <style>
+    body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f5f5 url('/images/svslogo.jpeg') no-repeat center center;
+  background-size: 300px; /* Adjust size of the watermark */
+  background-attachment: fixed; /* Keeps the watermark fixed during scroll */
+}
+
+
+    .our-services {
+      padding: 40px 20px;
+      text-align: center;
+      font-family: Angelos-Persona;
+    }
+
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #8b0e1a;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    .services-header h2 {
+      flex: 1;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .services-header .logo {
+      width: 100x;
+      height: 100px;
+      object-fit: contain;
+    }
+
+    .services-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      width: 280px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .service-card h3 {
+      background: #b31b1b;
+      color: white;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .service-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .service-card li {
+      margin: 8px 0;
+      color: #333;
+      font-size: 15px;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      .services-header {
+        flex-direction: column;
+      }
+
+      .services-header h2 {
+        margin: 10px 0;
+      }
+
+      .services-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    .search-bar {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#searchInput {
+  width: 80%;
+  max-width: 500px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 2px solid #8b0e1a;
+  border-radius: 30px;
+  outline: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+}
+
+#searchInput:focus {
+  border-color: #b31b1b;
+  box-shadow: 0 4px 20px rgba(179, 27, 27, 0.3);
+}
+
+  </style>
+</head>
+<body>
+
+  <section class="our-services">
+    <div class="services-header">
+      <img src="/images/svslogo.jpeg" alt="Logo 1" class="logo">
+      <h2><u>Our Services</u></h2>
+      <img src="/images/csclogo.webp" alt="Logo 2" class="logo">
+    </div>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search services here..." onkeyup="filterServices()" />
+    </div>
+
+
+    <!-- Notice Banner Section -->
+<div style="display: flex; justify-content: center;">
+  <!-- Notice Banner Section -->
+  <div style="background: linear-gradient(to right, #d4202a, #b8161e); color: white; padding: 10px 350px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+    <span style="font-size: 20px;">📢</span>
+    <a href="#" style="color: #fff; text-decoration: underline; font-weight: bold;">
+      Government Citizen Cards & Documents
+    </a>
+  </div>
+</div>
+
+
+
+    <div class="services-cards">
+      <!-- Insurance Card -->
+      <div class="service-card">
+        <h3>Aadhaar Card</h3>
+        <ul>
+          <li>▶ Aadhaar Card address change</li>
+          <li>▶ Original Aadhaar Print</li>
+          <li>▶ Aadhaar PVC Card Order</li>
+          <li>▶ Aadhaar Smart Card Print</li>
+        </ul>
+      </div>
+
+      <!-- Food Licence Card -->
+      <div class="service-card">
+        <h3>Pan Card</h3>
+        <ul>
+          <li>▶ New Pan Card</li>
+          <li>▶ Minor Pan Card</li>
+          <li>▶ Pan Card Correction</li>
+          <li>▶ Lost Pan Card</li>
+          <li>▶ E-Pan Card</li>
+        </ul>
+      </div>
+
+      <!-- Udyam Certificate Card -->
+      <div class="service-card">
+        <h3>Voter ID</h3>
+        <ul>
+          <li>▶ New Voter ID</li>
+          <li>▶ Voter ID Correction</li>
+          <li>▶ Voter ID Transfer</li>
+          <li>▶ Voter ID Smart Card Print</li>
+          <li>▶ Lost Voter ID</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>ABHA Card</h3>
+        <ul>
+          <li>▶ New Ayushman Card</li>
+          <li>▶ Ayushman Card Print</li>
+          <li>▶ Ayushman Card Original</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Passport</h3>
+        <ul>
+          <li>▶ New Passport</li>
+          <li>▶ Passport Renewal</li>
+          <li>▶ 60 pgs Passport</li>
+          <li>▶ 36 pgs Passport</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Ration Card</h3>
+        <ul>
+          <li>▶ New Ration Card</li>
+          <li>▶ Ration Card Correction</li>
+          <li>▶ Ration Card deletion</li>
+          <li>▶ Member add in Ration Card</li>
+          <li>▶ Member deletion in Ration Card</li>
+          <li>▶ Ration Card Print</li>
+        </ul>
+      </div>
+
+      <!-- Notice Banner Section -->
+      <div style="display: flex; justify-content: center;">
+        <div style="background: linear-gradient(to right, #d4202a, #b8161e); color: white; padding: 10px 350px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">📢</span>
+          <a href="#" style="color: #fff; text-decoration: underline; font-weight: bold;">
+              Insurance Services (with discount available)
+          </a>
+        </div>
+      </div>
+
+
+      <div class="service-card">
+        <h3>Health Insurance</h3>
+        <ul>
+          <li>▶ Star Health Insurance</li>
+          <li>▶ SBI Health Insurance</li>
+          <li>▶ Chola MS Health Insurance</li>
+          <li>▶ Group Health Insurance</li>
+          <li>▶ Chola MS Health Insurance</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Vehicle Insurance</h3>
+        <ul>
+          <li>▶ All Types of Vehicle Insurance</li>
+          <li>▶ 2 Wheeler (Bike)Insurance</li>
+          <li>▶ 3 Wheeler (Auto)Insurance</li>
+          <li>▶ 4 Wheeler (Car)Insurance</li>
+          <li>▶ Pacenger Carrying Vehicle Insurance</li>
+          <li>▶ Heavy Vehicle Insurance</li>
+          <li>▶ Tractor/JCB Insurance</li>          
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Vehicle Road Tax</h3>
+        <ul>
+          <li>▶ Kerala TP</li>
+          <li>▶ Tamil-Nadu TP</li>
+          <li>▶ Andra-Pradesh TP</li>
+          <li>▶ Goa TP</li>
+        </ul>
+      </div>
+
+
+            <!-- Notice Banner Section -->
+      <div style="display: flex; justify-content: center;">
+        <div style="background: linear-gradient(to right, #d4202a, #b8161e); color: white; padding: 10px 370px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">📢</span>
+          <a href="#" style="color: #fff; text-decoration: underline; font-weight: bold;">
+              Government Licence & Certificates
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <h3>Food Licence</h3>
+        <ul>
+          <li>▶ Basic Food Licence</li>
+          <li>▶ State Food Licence</li>
+          <li>▶ Central Food Licence</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>RTO Licence(Comming Soon..)</h3>
+        <ul>
+          <li>▶ Lerner Licence</li>
+          <li>▶ Driving Licence</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Marriage Certificate</h3>
+        <ul>
+          <li>Bride Aadhaar Card</li>
+        <li>Bride 10th Certificate</li>
+        <li>Bride witness(Fathe & Mother)</li>
+        <li>Bride Groom Aadhaar Card</li>
+        <li>Bride Groom 10th Certificate</li>
+        <li>Bride witness(Fathe & Mother)</li>
+        <li>Bride witness(Fathe & Mother)</li>
+        <li>Aadhaar linked mobile for otp</li>
+        <li>Photo</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Police Verification Certificate(PVC)</h3>
+        <ul>
+          <li>▶ PVC for Job Verification</li>
+          <li>▶ PVC for Security/Cooli etc</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Bhoomi Services</h3>
+        <ul>
+          <li>▶ Encumbrance Certificate (EC)</li>
+          <li>▶ RTC/Pahani</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Tailoring Certificate</h3>
+        <ul>
+          <li>▶ Usha Tailoring Certificate</li>
+        </ul>
+      </div>
+
+      <!-- Notice Banner Section -->
+      <div style="display: flex; justify-content: center;">
+        <div style="background: linear-gradient(to right, #d4202a, #b8161e); color: white; padding: 10px 340px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">📢</span>
+          <a href="#" style="color: #fff; text-decoration: underline; font-weight: bold;">
+              Loans (HDFC/Axis/Bajaj/Kotak/Piramal etc)
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <h3> Loans</h3>
+        <ul>
+          <li>▶ Personal Loans</li>
+          <li>▶ Business Loans</li>
+          <li>▶ Education Loans</li>
+          <li>▶ Hoam Loans</li>
+          <li>▶ Loan Against Property(LAP)</li>
+          <li>▶ Loan against existing Vehicle</li>
+          <li>▶ Three Wheeler Loans</li>
+          <li>▶ Tractor Loans</li>
+          <li>▶ Two Wheeler Loans</li>
+          <li>▶ Used Commercial Vehicle Loans</li>
+        </ul>
+      </div>
+
+      <!-- Notice Banner Section -->
+      <div style="display: flex; justify-content: center;">
+        <div style="background: linear-gradient(to right, #d4202a, #b8161e); color: white; padding: 10px 320px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">📢</span>
+          <a href="#" style="color: #fff; text-decoration: underline; font-weight: bold;">
+              Vehicle Related Documents (TP/RTO services etc)
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <h3>Vehicle Insurance</h3>
+        <ul>
+          <li>▶ All Types of Vehicle Insurance</li>
+          <li>▶ 2 Wheeler (Bike)Insurance</li>
+          <li>▶ 3 Wheeler (Auto)Insurance</li>
+          <li>▶ 4 Wheeler (Car)Insurance</li>
+          <li>▶ Pacenger Carrying Vehicle Insurance</li>
+          <li>▶ Heavy Vehicle Insurance</li>
+          <li>▶ Tractor/JCB Insurance</li>          
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Vehicle Road Tax</h3>
+        <ul>
+          <li>▶ Kerala TP</li>
+          <li>▶ Tamil-Nadu TP</li>
+          <li>▶ Andra-Pradesh TP</li>
+          <li>▶ Goa TP</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>RTO Services (Comming Soon...!)</h3>
+        <ul>
+          <li>▶ Transfer Ownership</li>
+          <li>▶ Change of address</li>
+          <li>▶ Application for NOC</li>
+          <li>▶ RC Duplicate & Surrender</li>
+          <li>▶ Apply for LL</li>
+          <li>▶ Apply for New/Renewal DL</li>
+          <li>▶ Apply for Duplicate DL</li>
+          <li>▶ DL Extract</li>
+          <li>▶ HSRP Number Plate</li>          
+        </ul>
+      </div>
+
+      <!-- Notice Banner Section -->
+      <div style="display: flex; justify-content: center;">
+        <div style="background: linear-gradient(to right, #d4202a, #b8161e); color: white; padding: 10px 380px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">📢</span>
+          <a href="#" style="color: #fff; text-decoration: underline; font-weight: bold;">
+              Tax Services (ITR Filing /G.S.T)
+          </a>
+        </div>
+      </div>
+
+
+
+      <div class="service-card">
+        <h3>Income Tax Filing</h3>
+        <ul>
+          <li>▶ Salaried ITR filing</li>
+          <li>▶ Self-Employed ITR filing</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>GST</h3>
+        <ul>
+          <li>▶ New GST</li>
+          <li>▶ Changes in GST</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Vehicle Road Tax</h3>
+        <ul>
+          <li>▶ Kerala TP</li>
+          <li>▶ Tamil-Nadu TP</li>
+          <li>▶ Andra-Pradesh TP</li>
+          <li>▶ Goa TP</li>
+        </ul>
+      </div>
+
+          <!-- Notice Banner Section -->
+      <div style="display: flex; justify-content: center;">
+        <div style="background: linear-gradient(to right, #d4202a, #b8161e); color: white; padding: 10px 350px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">📢</span>
+          <a href="#" style="color: #fff; text-decoration: underline; font-weight: bold;">
+              P.F Services (Provident Funds Services)
+          </a>
+        </div>
+      </div>
+
+
+      <div class="service-card">
+        <h3>Provident Funds (P.F) Services</h3>
+        <ul>
+          <li>▶ Find UAN Number</li>
+          <li>▶ UAN Activation</li>
+          <li>▶ UAN Password Change</li>
+          <li>▶ PF Profile Update</li>
+          <li>▶ PF KYC</li>
+          <li>▶ PF Nomination</li>
+          <li>▶ PF Advance Apply</li>
+          <li>▶ PF Transfer</li>
+          <li>▶ PF Settlement</li>
+        </ul>
+      </div>
+
+      <!-- Notice Banner Section -->
+      <div style="display: flex; justify-content: center;">
+        <div style="background: linear-gradient(to right, #d4202a, #b8161e); color: white; padding: 10px 360px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">📢</span>
+          <a href="#" style="color: #fff; text-decoration: underline; font-weight: bold;">
+              Banking Services (Account Opening...etc)
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <h3>Banking Services</h3>
+        <ul>
+          <li>▶ Bank Account Opening</li>
+          <li>▶ Credit Card</li>
+          <li>▶ Balance Enquiry</li>
+          <li>▶ National Pension Scheam</li>
+          <li>▶ CIBIL Report</li>
+        </ul>
+      </div>
+
+      <!-- Notice Banner Section -->
+      <div style="display: flex; justify-content: center;">
+        <div style="background: linear-gradient(to right, #d4202a, #b8161e); color: white; padding: 10px 290px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">📢</span>
+          <a href="#" style="color: #fff; text-decoration: underline; font-weight: bold;">
+              Nadakacheri Services (Cast&Income cert/Residential Cert...etc)
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <h3>Nadakacheri Services</h3>
+        <ul>
+          <li>▶ Cast & Income Certificate</li>
+          <li>▶ Residential Certificate</li>
+          <li>▶ OBC Certificate (Central)</li>
+          <li>▶ Widow Certificate</li>
+          <li>▶ Domicel Certificate</li>
+          <li>▶ Widow Pension</li>
+          <li>▶ Farmer Widow Pension</li>
+          <li>▶ Old Age Pension</li>
+          <li>▶ Sandhya Suraksha Yojane</li>
+        </ul>
+      </div>
+
+       <!-- Notice Banner Section -->
+      <div style="display: flex; justify-content: center;">
+        <div style="background: linear-gradient(to right, #d4202a, #b8161e); color: white; padding: 10px 350px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">📢</span>
+          <a href="#" style="color: #fff; text-decoration: underline; font-weight: bold;">
+              EMICards/Credit Cards (Axis/PNB...etc)
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <h3>Cards</h3>
+        <ul>
+          <li>▶ BAJAJ Insta EMI Card</li>
+          <li>▶ Axis Bank Credit Card</li>
+          <li>▶ Punjab National Bank Credit Card</li>
+          <li>▶ HDFC Bank Credit Card</li>
+          <li>▶ LIC Bank Credit Card</li>
+        </ul>
+      </div>
+
+         <!-- Notice Banner Section -->
+      <div style="display: flex; justify-content: center;">
+        <div style="background: linear-gradient(to right, #d4202a, #b8161e); color: white; padding: 10px 370px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">📢</span>
+          <a href="#" style="color: #fff; text-decoration: underline; font-weight: bold;">
+              Travel Tickets (Train/Flight...etc)
+          </a>
+        </div>
+      </div>
+
+
+      <div class="service-card">
+        <h3>Travel Tickets</h3>
+        <ul>
+          <li>▶ Train Tickets</li>
+          <li>▶ Flight Tickets</li>
+          <li>▶ Flight Tickets</li>
+          <li>▶ Travel Packages</li>
+        </ul>
+      </div>
+
+
+          <!-- Notice Banner Section -->
+      <div style="display: flex; justify-content: center;">
+        <div style="background: linear-gradient(to right, #d4202a, #b8161e); color: white; padding: 10px 350px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">📢</span>
+          <a href="#" style="color: #fff; text-decoration: underline; font-weight: bold;">
+              Scheams (Govt & Private Scheams...etc)
+          </a>
+        </div>
+      </div>
+
+
+      <div class="service-card">
+        <h3>Govt/Pvt Scheams</h3>
+        <ul>
+          <li>▶ LIC</li>
+          <li>▶ Senior Citizen Card</li>
+          <li>▶ UDID Card</li>
+          <li>▶ E Shram Card</li>
+          <li>▶ Labour Card</li>
+          <li>▶ Tailoring Certificate</li>         
+        </ul>
+      </div>
+
+      <!-- Notice Banner Section -->
+      <div style="display: flex; justify-content: center;">
+        <div style="background: linear-gradient(to right, #d4202a, #b8161e); color: white; padding: 10px 280px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">📢</span>
+          <a href="#" style="color: #fff; text-decoration: underline; font-weight: bold;">
+              Tours & Travels Packages (Various Temple Packages Availabe)
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <h3>Travel Packages</h3>
+        <ul>
+          <li>▶ Tirupati Packages</li>
+          <li>▶ Char Dham Yatra Packages</li>
+        </ul>
+      </div>
+
+      <!-- Notice Banner Section -->
+      <div style="display: flex; justify-content: center;">
+        <div style="background: linear-gradient(to right, #d4202a, #b8161e); color: white; padding: 10px 350px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">📢</span>
+          <a href="#" style="color: #fff; text-decoration: underline; font-weight: bold;">
+              Temple Services (Darshana Tickets)
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <h3>Temple Services</h3>
+        <ul>
+          <li>▶ Tirupati Darshana Tickets</li>
+          <li>▶ Sabarimalai Darshana Tickets</li>
+          <li>▶ E-Prasada Order</li>
+        </ul>
+      </div>
+
+      <!-- Notice Banner Section -->
+      <div style="display: flex; justify-content: center;">
+        <div style="background: linear-gradient(to right, #d4202a, #b8161e); color: white; padding: 10px 350px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">📢</span>
+          <a href="#" style="color: #fff; text-decoration: underline; font-weight: bold;">
+              Services for Students (Bus Pass,...etc)
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <h3>Services for Students</h3>
+        <ul>
+          <li>▶ Student Bus Pass</li>
+          <li>▶ Project Works</li>
+        </ul>
+      </div>
+
+      <!-- Notice Banner Section -->
+      <div style="display: flex; justify-content: center;">
+        <div style="background: linear-gradient(to right, #d4202a, #b8161e); color: white; padding: 10px 350px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">📢</span>
+          <a href="#" style="color: #fff; text-decoration: underline; font-weight: bold;">
+              Other Services (Laptop/Govt Jobs...etc)
+          </a>
+        </div>
+      </div>
+
+
+      <div class="service-card">
+        <h3>Other Services</h3>
+        <ul>
+          <li>▶ RTC/Pahani</li>
+          <li>▶ Mutation</li>
+          <li>▶ FRUITS ID</li>
+          <li>▶ Rental Agreement</li>
+          <li>▶ Lease Agreement</li>
+          <li>▶ All Bank Statements</li>
+          <li>▶ Laptop Sales & Services</li>
+          <li>▶ System Repair</li>
+          <li>▶ E-Lost Report</li>
+          <li>▶ Computer Education</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  function filterServices() {
+    const input = document.getElementById("searchInput");
+    const filter = input.value.toLowerCase();
+    const cards = document.querySelectorAll(".service-card");
+
+    cards.forEach(card => {
+      const title = card.querySelector("h3").textContent.toLowerCase();
+      const items = Array.from(card.querySelectorAll("li")).map(li => li.textContent.toLowerCase());
+      
+      const isMatch = title.includes(filter) || items.some(item => item.includes(filter));
+
+      card.style.display = isMatch ? "block" : "none";
+    });
+  }
+</script>
+
+
+</body>
+</html>

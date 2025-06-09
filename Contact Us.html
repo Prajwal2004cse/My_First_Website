@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 10px; /* Added spacing around the page */
+      background: #f4f7fa;
+      color: #333;
+      box-sizing: border-box;
+    }
+
+body::before {
+  content: "";
+  background: url('/images/svslogo.jpeg') no-repeat center center;
+  background-size: 800px auto; /* Adjust size as needed */
+  opacity: 0.06; /* Watermark transparency */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* Ensures it's behind all content */
+  pointer-events: none; /* Allows normal interaction */
+}
+
+
+    header {
+      background: linear-gradient(to right, #d9272e, #911a1f);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+      border-radius: 10px;
+    }
+
+    header img {
+      height: 90px;
+    }
+
+    header h1 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+
+    h2 {
+      text-align: center;
+      color: #1e293b;
+      margin: 40px 0 20px;
+      font-size: 2.2rem;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 80px;
+      max-width: 1200px;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      flex: 1 1 450px;
+      min-width: 300px;
+      transition: transform 0.3s;
+      
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .address {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #475569;
+    }
+
+    iframe.map {
+      width: 100%;
+      height: 300px;
+      border: none;
+      border-radius: 12px;
+      margin-top: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      font-size: 16px;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #3b82f6;
+    }
+
+    button {
+      background-color: #3b82f6;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #2563eb;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+  <img src="/images/svslogo.jpeg" alt="Logo 1" />
+  <h1><u>S.V.S Computer Jigani</u></h1>
+  <img src="/images/csclogo.webp" alt="Logo 2" />
+</header>
+
+  <h2>Contact Us</h2>
+  <div class="container">
+    <!-- Office Address & Map -->
+    <div class="card">
+      <h3 style="text-align: center;">Our Office</h3>
+      <p class="address">
+        <strong>SVS Computer/Vinayaka Cyber (Digital Seva Kendra)</strong><br>
+        Common Service Center(CSC)<br>
+        Rudraswamy Complex,1st Floor<br>
+        Opposite Hotel V-INN , APC Circle,<br>
+        Jigani Village and Post,Anekal Taluk,<br>
+        Bengaluru District - 560105,<br>
+        Karnataka, India<br>
+        Phone: 080-22440050/+91-9482272307<br>
+        Email: vcyberblr@gmail.com
+      </p>
+      <!-- <iframe 
+        class="map"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1053647766076!2d76.93608871480549!3d10.759936192331428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859b184b7d2c1%3A0x8c690ae4e655f4d7!2sSome%20Landmark!5e0!3m2!1sen!2sin!4v1679890123456"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe> -->
+
+      <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.9666983353527!2d77.64028777417906!3d12.78067358751744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae69a03dc1f3a5%3A0xd0667ab42a124e40!2sSVS%20Computer%20Jigani!5e0!3m2!1sen!2sin!4v1748789470244!5m2!1sen!2sin" 
+    width="450" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    
+
+    <!-- Contact Form -->
+    <!-- Contact Form -->
+      <div class="card">
+        <h3>Send a Message</h3>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" pattern="[A-Za-z\s]+" title="Please enter letters only" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Your Mobile Number</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" maxlength="10" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit">Submit</button>
+          <p id="successMessage" style="display:none; color: green; margin-top: 15px; font-weight: 600;"></p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // Prevent default form submission
+
+    const successMessage = document.getElementById("successMessage");
+    successMessage.textContent = "Thank you! Your request submitted successfully. Our team will call you as soon as possible.";
+    successMessage.style.display = "block";
+
+    // Optional: clear the form
+    this.reset();
+
+    // Hide the message after 10 seconds
+    setTimeout(() => {
+      successMessage.style.display = "none";
+    }, 3000); // 10,000 milliseconds = 3 seconds
+  });
+</script>
+
+
+</body>
+</html>

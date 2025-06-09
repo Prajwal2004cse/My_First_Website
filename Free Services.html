@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Services</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f5f5;
+    }
+
+    .free-services {
+      padding: 40px 20px;
+      text-align: center;
+      font-family: Angelos-Persona;
+    }
+
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #8b0e1a;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    .services-header h2 {
+      flex: 1;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .services-header .logo {
+      width: 100x;
+      height: 100px;
+      object-fit: contain;
+    }
+
+    .services-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      width: 280px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .service-card h3 {
+      background: #b31b1b;
+      color: white;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .service-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .service-card li {
+      margin: 8px 0;
+      color: #333;
+      font-size: 15px;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      .services-header {
+        flex-direction: column;
+      }
+
+      .services-header h2 {
+        margin: 10px 0;
+      }
+
+      .services-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="free-services">
+    <div class="services-header">
+      <img src="/images/svslogo.jpeg" alt="Logo 1" class="logo">
+      <h2><u>Free Services</u></h2>
+      <img src="/images/csclogo.webp" alt="Logo 2" class="logo">
+    </div>
+
+    <div class="services-cards">
+      <!-- Insurance Card -->
+      <div class="service-card">
+        <h3>Ayushman Card</h3>
+        <ul>
+          <li>▶ Required Documents :</li>
+          <li>▶ Aadhaar Card</li>
+          <li>▶ Ration Card</li>
+          <li>▶ Aadhaar linked mobile for otp</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

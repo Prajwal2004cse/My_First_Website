@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #fff;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-left img {
+      height: 60px;
+      margin-right: 10px;
+    }
+
+    .header-left h1 {
+      font-size: 24px;
+      color: #002bb8;
+      margin: 0;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-right a {
+      text-decoration: none;
+      color: purple;
+      font-size: 14px;
+    }
+
+    .font-controls button {
+      padding: 4px 8px;
+      margin-left: 4px;
+    }
+
+    .container {
+      display: flex;
+      height: calc(100vh - 80px);
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: #f0f0f8;
+      border-right: 1px solid #ccc;
+      padding-top: 20px;
+    }
+
+    .sidebar button {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      border: none;
+      background: none;
+      text-align: left;
+      cursor: pointer;
+      font-size: 14px;
+      color: #333;
+      transition: background 0.3s;
+    }
+
+    .sidebar button:hover {
+      background-color: #ddd;
+    }
+
+    .sidebar button.logout {
+      color: red;
+      font-weight: bold;
+    }
+
+    .main {
+      flex: 1;
+      background-color: #f3f3f3;
+      padding: 20px;
+      overflow: auto;
+    }
+
+    .cards {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: #b0c4de;
+      border-radius: 20px;
+      padding: 40px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .page-title {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    table input {
+      width: 140px;
+      padding: 6px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    /* Wider inputs for specific fields in PF Customer form */
+    .pf-customer-form input[name="address"],
+    .pf-customer-form input[name="bank_name"],
+    .pf-customer-form input[name="branch"] {
+      width: 200px;
+    }
+
+    /* Smaller inputs for Yes/No */
+    .pf-customer-form input[name="kyc"],
+    .pf-customer-form input[name="nominee"] {
+      width: 80px;
+    }
+
+    table th,
+    table td {
+      text-align: left;
+    }
+
+    /* Back button style */
+    .back-btn {
+      margin-bottom: 10px;
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <img src="/images/svslogo.jpeg" alt="SVS Logo" />
+      <h1>S.V.S Computer</h1>
+    </div>
+    <div class="header-right">
+      <span>📞 080-22440050</span>
+      <a href="#">About Us</a>
+      <a href="#">Careers</a>
+      <a href="#">Locate Us</a>
+      <a href="#">हिंदी</a>
+      <div class="font-controls">
+        <button>A-</button>
+        <button>A</button>
+        <button>A+</button>
+      </div>
+      <img src="/images/csclogo.webp" alt="CSC Logo" height="40" />
+    </div>
+  </div>
+
+  <div><marquee class="blink" style="font-weight: bold; color:#d9272e;"> Pls logout as soon as you update customer report to prevent unauthorized access</marquee></div>
+  <!-- Main content -->
+  <div class="container">
+    <div class="sidebar">
+      <button onclick="showCustomerForm(); downloadExcel('customerData', 'Customer_Report')">Customer Report</button>
+      <button onclick="showPFCustomerForm(); downloadExcel('pfCustomerData', 'PF_Customer_Report')">PF Customer Report</button>
+      <button onclick="showVehicleInsuranceForm(); downloadExcel('vehicleInsuranceData', 'Vehicle_Insurance_Report')">Vehicle Insurance Report</button>
+      <button onclick="showHealthInsuranceForm(); downloadExcel('healthInsuranceData', 'Health_Insurance_Report')">Health Insurance Report</button>
+      <button onclick="downloadIndividualReport()">Individual Report</button>
+      <button onclick="downloadFullReport()">Full Report</button>
+      <button onclick="logout()" class="logout">Logout</button>
+    </div>
+
+    <div class="main" id="mainContent">
+      <div class="page-title">Dashboard</div>
+      <div class="cards">
+        <div class="card"><a href="javascript:void(0)" onclick="showCustomerForm()"><h3>Customer Report</h3></a></div>
+        <div class="card"><a href="javascript:void(0)" onclick="showPFCustomerForm()"><h3>PF Customer Report</h3></a></div>
+        <div class="card"><a href="javascript:void(0)" onclick="showVehicleInsuranceForm()"><h3>Vehicle Insurance Report</h3></a></div>
+        <div class="card"><a href="javascript:void(0)" onclick="showHealthInsuranceForm()"><h3>Health Insurance Report</h3></a></div>
+        <div class="card"><a href="#"><h3>DL Report</h3></a></div>
+        <div class="card"><a href="#"><h3>Attendance Sheet</h3></a></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Storage keys for each form data
+    const CUSTOMER_STORAGE_KEY = 'customerData';
+    const PF_CUSTOMER_STORAGE_KEY = 'pfCustomerData';
+    const VEHICLE_INSURANCE_STORAGE_KEY = 'vehicleInsuranceData';
+    const HEALTH_INSURANCE_STORAGE_KEY = 'healthInsuranceData';
+
+    // Show Dashboard (default view)
+    function showDashboard() {
+      const main = document.getElementById('mainContent');
+      main.innerHTML = `
+        <div class="page-title">Dashboard</div>
+        <div class="cards">
+          <div class="card"><a href="javascript:void(0)" onclick="showCustomerForm()"><h3>Customer Report</h3></a></div>
+          <div class="card"><a href="javascript:void(0)" onclick="showPFCustomerForm()"><h3>PF Customer Report</h3></a></div>
+          <div class="card"><a href="javascript:void(0)" onclick="showVehicleInsuranceForm()"><h3>Vehicle Insurance Report</h3></a></div>
+          <div class="card"><a href="javascript:void(0)" onclick="showHealthInsuranceForm()"><h3>Health Insurance Report</h3></a></div>
+          <div class="card"><a href="#"><h3>DL Report</h3></a></div>
+          <div class="card"><a href="#"><h3>Attendance Sheet</h3></a></div>
+        </div>
+        <div style="margin-top: 20px;">
+          <h3>Customer Report Analysis</h3>
+          <canvas id="customerChart" style="max-width: 600px; margin: 0 auto;"></canvas>
+        </div>
+      `;
+
+      // Load and process Customer Report data for the chart
+      const customerData = JSON.parse(localStorage.getItem(CUSTOMER_STORAGE_KEY) || '[]');
+      const serviceCounts = {};
+      customerData.forEach(row => {
+        const service = row.service_visited || 'Unknown';
+        serviceCounts[service] = (serviceCounts[service] || 0) + 1;
+      });
+
+      // Prepare chart data
+      const labels = Object.keys(serviceCounts);
+      const data = Object.values(serviceCounts);
+      const colors = labels.map((_, i) => `hsl(${i * 360 / labels.length}, 70%, 50%)`); // Generate distinct colors
+
+      // Create the chart
+      new Chart(document.getElementById('customerChart'), {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Customers by Service Visited',
+            data: data,
+            backgroundColor: colors,
+            borderColor: colors.map(color => color.replace('50%)', '30%)')),
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Number of Customers'
+              }
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'Service Visited'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            title: {
+              display: true,
+              text: 'Customer Distribution by Service Visited'
+            }
+          }
+        }
+      });
+    }
+
+    // Show Customer Report Form
+    function showCustomerForm() {
+      const main = document.getElementById('mainContent');
+      main.innerHTML = `
+        <div class="page-title">Customer Report Form</div>
+        <button onclick="showDashboard()" class="back-btn">⬅ Back to Dashboard</button>
+        <button onclick="addRow()" style="margin-bottom: 10px;">Add Row</button>
+        <form id="customerForm">
+          <table border="1" cellpadding="10" style="width:100%; background-color: #fff; border-collapse: collapse;">
+            <thead>
+              <tr style="background-color: #ccc;">
+                <th>Sl. No</th>
+                <th>Customer Name</th>
+                <th>DOB</th>
+                <th>Mobile No</th>
+                <th>Address</th>
+                <th>Service Visited For</th>
+                <th>Service Looking For</th>
+                <th>Date of Visit</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="formRows"></tbody>
+          </table>
+        </form>
+      `;
+      loadSavedRows(CUSTOMER_STORAGE_KEY);
+    }
+
+    // Show PF Customer Report Form
+    function showPFCustomerForm() {
+      const main = document.getElementById('mainContent');
+      main.innerHTML = `
+        <div class="page-title">PF Customer Report Form</div>
+        <button onclick="showDashboard()" class="back-btn">⬅ Back to Dashboard</button>
+        <button onclick="addRow()" style="margin-bottom: 10px;">Add Row</button>
+        <form id="customerForm" class="pf-customer-form">
+          <table border="1" cellpadding="10" style="width:100%; background-color: #fff; border-collapse: collapse;">
+            <thead>
+              <tr style="background-color: #ccc;">
+                <th>Sl. No</th>
+                <th>Name</th>
+                <th>DOB</th>
+                <th>Mob No</th>
+                <th>Address</th>
+                <th>UAN No</th>
+                <th>Password</th>
+                <th>Aadhaar No</th>
+                <th>Pan No</th>
+                <th>Bank Name</th>
+                <th>Bank Ac No</th>
+                <th>IFSC Code</th>
+                <th>Branch</th>
+                <th>KYC (Yes/No)</th>
+                <th>Nominee (Yes/No)</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="formRows"></tbody>
+          </table>
+        </form>
+      `;
+      loadSavedRows(PF_CUSTOMER_STORAGE_KEY);
+    }
+
+    // Show Vehicle Insurance Report Form
+    function showVehicleInsuranceForm() {
+      const main = document.getElementById('mainContent');
+      main.innerHTML = `
+        <div class="page-title">Vehicle Insurance Report Form</div>
+        <button onclick="showDashboard()" class="back-btn">⬅ Back to Dashboard</button>
+        <button onclick="addRow()" style="margin-bottom: 10px;">Add Row</button>
+        <form id="customerForm" class="insurance-form">
+          <table border="1" cellpadding="10" style="width:100%; background-color: #fff; border-collapse: collapse;">
+            <thead>
+              <tr style="background-color: #ccc;">
+                <th>Sl. No</th>
+                <th>Name</th>
+                <th>Date of Policy</th>
+                <th>End Date of Policy</th>
+                <th>Mobile No</th>
+                <th>Premium Amount</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="formRows"></tbody>
+          </table>
+        </form>
+      `;
+      loadSavedRows(VEHICLE_INSURANCE_STORAGE_KEY);
+    }
+
+    // Show Health Insurance Report Form
+    function showHealthInsuranceForm() {
+      const main = document.getElementById('mainContent');
+      main.innerHTML = `
+        <div class="page-title">Health Insurance Report Form</div>
+        <button onclick="showDashboard()" class="back-btn">⬅ Back to Dashboard</button>
+        <button onclick="addRow()" style="margin-bottom: 10px;">Add Row</button>
+        <form id="customerForm" class="insurance-form">
+          <table border="1" cellpadding="10" style="width:100%; background-color: #fff; border-collapse: collapse;">
+            <thead>
+              <tr style="background-color: #ccc;">
+                <th>Sl. No</th>
+                <th>Name</th>
+                <th>Date of Policy</th>
+                <th>End Date of Policy</th>
+                <th>Mobile No</th>
+                <th>Premium Amount</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="formRows"></tbody>
+          </table>
+        </form>
+      `;
+      loadSavedRows(HEALTH_INSURANCE_STORAGE_KEY);
+    }
+
+    // Create row HTML for each form type based on passed data (or empty fields)
+    function createRow(data = {}) {
+      const form = document.getElementById('customerForm');
+      if (!form) return '';
+      if (form.classList.contains('pf-customer-form')) {
+        // PF Customer Report row
+        return `
+          <tr>
+            <td></td>
+            <td><input type="text" name="name" value="${data.name || ''}" /></td>
+            <td><input type="date" name="dob" value="${data.dob || ''}" /></td>
+            <td><input type="text" name="mob_no" value="${data.mob_no || ''}" /></td>
+            <td><input type="text" name="address" value="${data.address || ''}" /></td>
+            <td><input type="text" name="uan_no" value="${data.uan_no || ''}" /></td>
+            <td><input type="password" name="password" value="${data.password || ''}" /></td>
+            <td><input type="text" name="aadhaar_no" value="${data.aadhaar_no || ''}" /></td>
+            <td><input type="text" name="pan_no" value="${data.pan_no || ''}" /></td>
+            <td><input type="text" name="bank_name" value="${data.bank_name || ''}" /></td>
+            <td><input type="text" name="bank_ac_no" value="${data.bank_ac_no || ''}" /></td>
+            <td><input type="text" name="ifsc_code" value="${data.ifsc_code || ''}" /></td>
+            <td><input type="text" name="branch" value="${data.branch || ''}" /></td>
+            <td><input type="text" name="kyc" value="${data.kyc || ''}" placeholder="Yes/No" /></td>
+            <td><input type="text" name="nominee" value="${data.nominee || ''}" placeholder="Yes/No" /></td>
+            <td><button type="button" onclick="removeRow(this)">Remove</button></td>
+          </tr>
+        `;
+      } else if (form.classList.contains('insurance-form')) {
+        // Vehicle or Health Insurance Report row
+        return `
+          <tr>
+            <td></td>
+            <td><input type="text" name="name" value="${data.name || ''}" /></td>
+            <td><input type="date" name="policy_start" value="${data.policy_start || ''}" /></td>
+            <td><input type="date" name="policy_end" value="${data.policy_end || ''}" /></td>
+            <td><input type="text" name="mobile_no" value="${data.mobile_no || ''}" /></td>
+            <td><input type="number" name="premium_amount" value="${data.premium_amount || ''}" /></td>
+            <td><button type="button" onclick="removeRow(this)">Remove</button></td>
+          </tr>
+        `;
+      } else {
+        // General Customer Report row
+        return `
+          <tr>
+            <td></td>
+            <td><input type="text" name="customer_name" value="${data.customer_name || ''}" /></td>
+            <td><input type="date" name="dob" value="${data.dob || ''}" /></td>
+            <td><input type="text" name="mobile_no" value="${data.mobile_no || ''}" /></td>
+            <td><input type="text" name="address" value="${data.address || ''}" /></td>
+            <td><input type="text" name="service_visited" value="${data.service_visited || ''}" /></td>
+            <td><input type="text" name="service_looking_for" value="${data.service_looking_for || ''}" /></td>
+            <td><input type="date" name="date_of_visit" value="${data.date_of_visit || ''}" /></td>
+            <td><button type="button" onclick="removeRow(this)">Remove</button></td>
+          </tr>
+        `;
+      }
+    }
+
+    // Add a new row to current form
+    function addRow() {
+      const tbody = document.getElementById('formRows');
+      if (!tbody) return;
+      tbody.insertAdjacentHTML('beforeend', createRow());
+      updateSerialNumbers();
+      attachInputListeners();
+      saveRows();
+    }
+
+    // Remove a row and update serial numbers and save
+    function removeRow(button) {
+      const row = button.closest('tr');
+      row.remove();
+      updateSerialNumbers();
+      saveRows();
+    }
+
+    // Update the Sl. No column based on row order
+    function updateSerialNumbers() {
+      const rows = document.querySelectorAll('#formRows tr');
+      rows.forEach((row, index) => {
+        row.cells[0].textContent = index + 1;
+      });
+    }
+
+    // Save all form rows data to localStorage
+    function saveRows() {
+      const tbody = document.getElementById('formRows');
+      if (!tbody) return;
+      const rows = tbody.querySelectorAll('tr');
+      const form = document.getElementById('customerForm');
+      if (!form) return;
+      const dataArray = [];
+      rows.forEach(row => {
+        const inputs = row.querySelectorAll('input');
+        const rowData = {};
+        inputs.forEach(input => {
+          rowData[input.name] = input.value;
+        });
+        dataArray.push(rowData);
+      });
+
+      if (form.classList.contains('pf-customer-form')) {
+        localStorage.setItem(PF_CUSTOMER_STORAGE_KEY, JSON.stringify(dataArray));
+      } else if (form.classList.contains('insurance-form')) {
+        const title = document.querySelector('.page-title').textContent;
+        if (title.includes('Vehicle Insurance')) {
+          localStorage.setItem(VEHICLE_INSURANCE_STORAGE_KEY, JSON.stringify(dataArray));
+        } else if (title.includes('Health Insurance')) {
+          localStorage.setItem(HEALTH_INSURANCE_STORAGE_KEY, JSON.stringify(dataArray));
+        }
+      } else {
+        localStorage.setItem(CUSTOMER_STORAGE_KEY, JSON.stringify(dataArray));
+      }
+    }
+
+    // Load saved rows from localStorage and render
+    function loadSavedRows(storageKey) {
+      const dataStr = localStorage.getItem(storageKey);
+      const tbody = document.getElementById('formRows');
+      if (!tbody) return;
+      tbody.innerHTML = ''; // clear existing
+      if (dataStr) {
+        const dataArray = JSON.parse(dataStr);
+        dataArray.forEach(data => {
+          tbody.insertAdjacentHTML('beforeend', createRow(data));
+        });
+      }
+      updateSerialNumbers();
+      attachInputListeners();
+    }
+
+    // Attach input event listeners to save data on input change
+    function attachInputListeners() {
+      const inputs = document.querySelectorAll('#formRows input');
+      inputs.forEach(input => {
+        input.oninput = () => saveRows();
+      });
+    }
+
+    // Download data as Excel file
+    function downloadExcel(storageKey, fileName) {
+      const dataStr = localStorage.getItem(storageKey);
+      if (!dataStr) {
+        alert('No data available to download for ' + fileName.replace('_', ' ') + '.');
+        return;
+      }
+      const data = JSON.parse(dataStr);
+      if (data.length === 0) {
+        alert('No data available to download for ' + fileName.replace('_', ' ') + '.');
+        return;
+      }
+
+      // Add serial number to each row
+      const dataWithSerial = data.map((row, index) => ({
+        'Sl. No': index + 1,
+        ...row
+      }));
+
+      // Create worksheet
+      const ws = XLSX.utils.json_to_sheet(dataWithSerial);
+      // Create workbook
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      // Generate and download Excel file
+      XLSX.writeFile(wb, `${fileName}.xlsx`);
+    }
+
+    // Download Individual Report (assuming Customer Report data as placeholder)
+    function downloadIndividualReport() {
+      downloadExcel(CUSTOMER_STORAGE_KEY, 'Individual_Report');
+    }
+
+    // Download Full Report (combines all reports)
+    function downloadFullReport() {
+      const allData = [];
+
+      // Customer Report
+      let customerData = JSON.parse(localStorage.getItem(CUSTOMER_STORAGE_KEY) || '[]');
+      customerData = customerData.map((row, index) => ({
+        'Report Type': 'Customer Report',
+        'Sl. No': index + 1,
+        ...row
+      }));
+      allData.push(...customerData);
+
+      // PF Customer Report
+      let pfCustomerData = JSON.parse(localStorage.getItem(PF_CUSTOMER_STORAGE_KEY) || '[]');
+      pfCustomerData = pfCustomerData.map((row, index) => ({
+        'Report Type': 'PF Customer Report',
+        'Sl. No': index + 1,
+        ...row
+      }));
+      allData.push(...pfCustomerData);
+
+      // Vehicle Insurance Report
+      let vehicleData = JSON.parse(localStorage.getItem(VEHICLE_INSURANCE_STORAGE_KEY) || '[]');
+      vehicleData = vehicleData.map((row, index) => ({
+        'Report Type': 'Vehicle Insurance Report',
+        'Sl. No': index + 1,
+        ...row
+      }));
+      allData.push(...vehicleData);
+
+      // Health Insurance Report
+      let healthData = JSON.parse(localStorage.getItem(HEALTH_INSURANCE_STORAGE_KEY) || '[]');
+      healthData = healthData.map((row, index) => ({
+        'Report Type': 'Health Insurance Report',
+        'Sl. No': index + 1,
+        ...row
+      }));
+      allData.push(...healthData);
+
+      if (allData.length === 0) {
+        alert('No data available to download for Full Report.');
+        return;
+      }
+
+      // Create worksheet
+      const ws = XLSX.utils.json_to_sheet(allData);
+      // Create workbook
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Full Report');
+      // Generate and download Excel file
+      XLSX.writeFile(wb, 'Full_Report.xlsx');
+    }
+
+    // Logout function placeholder
+    function logout() {
+      alert('Logged out (functionality not implemented)');
+    }
+
+    // Initially show dashboard on load
+    showDashboard();
+  </script>
+</body>
+</html>

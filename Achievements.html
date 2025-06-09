@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Achievements</title>
+  <!-- <link rel="stylesheet" href="Achievements.css"> -->
+   <style>
+    body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 10px; /* Added spacing around the page */
+  background: #f4f7fa;
+  color: #333;
+  box-sizing: border-box;
+  position: relative; /* Needed for the watermark */
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('/images/svslogo.jpeg') no-repeat center center;
+  background-size: 800px auto; /* Adjust size as needed */
+  opacity: 0.05; /* Subtle watermark */
+  pointer-events: none; /* Allows clicks through watermark */
+  z-index: -1; /* Places watermark behind content */
+}
+
+
+    header {
+      background: linear-gradient(to right, #d9272e, #911a1f);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+      border-radius: 10px;
+    }
+
+    header img {
+      height: 90px;
+    }
+
+    header h1 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+    }
+
+    h2 {
+      color: #0057a3;
+      margin-top: 0;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+
+      header {
+        flex-direction: column;
+        text-align: center;
+        height: auto;
+      }
+
+      header h1 {
+        position: static;
+        transform: none;
+        margin-top: 15px;
+      }
+    }
+
+    .footer-section {
+  background: linear-gradient(to right, #d9272e, #911a1f);
+  color: white;
+  padding: 40px 20px 20px;
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-column {
+  width: 22%;
+  min-width: 200px;
+  margin-bottom: 20px;
+}
+
+.footer-column h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #fff;
+  border-bottom: 1px solid #ffa500;
+  padding-bottom: 5px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 6px;
+  color: #ddd;
+}
+
+.footer-column ul li a {
+  color: #ddd;
+  text-decoration: none;
+}
+
+.footer-column ul li a:hover {
+  color: #ffa500;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  color: #ccc;
+  border-top: 1px solid #ffa500;
+  margin-top: 20px;
+  padding-top: 10px;
+  font-size: 12px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <img src="/images/svslogo.jpeg" alt="Logo 1" />
+  <h1><u>Our Achievements</u></h1>
+  <img src="/images/csclogo.webp" alt="Logo 2" />
+</header>
+
+<div class="container">
+  <div class="section">
+    <h2>Introduction</h2>
+    <p>
+      Welcome to <strong>S V S Computer</strong>, a trusted online service center that has been serving the community for over 15 years. Our center is committed to providing seamless access to a wide range of government and private services. From job applications to scheme registrations, we have been a reliable partner for individuals looking to connect with various opportunities in both the public and private sectors.
+    </p>
+    <p>
+      At <strong>S V S Computer</strong>, we understand the challenges of navigating through the bureaucratic processes and aim to make these services more accessible, transparent, and efficient for every individual. Whether it’s government services like Aadhaar registration, passport applications, or applying for various welfare schemes, or private services like insurance, banking, and more, we are here to assist.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Achievements</h2>
+    <ul>
+      <li>Serving over <strong>n number of</strong> clients who successfully applied for various government and private services, from job applications to pension schemes and insurance services.</li>
+      <li>Facilitating the completion of <strong>n number of</strong> government welfare scheme registrations, ensuring that individuals receive benefits like healthcare, subsidies, and financial support.</li>
+      <li>Providing job application assistance for both government and private sectors, helping numerous individuals secure employment through seamless application processes.</li>
+      <li>Collaborating with multiple government and private sector agencies, ensuring our services are in line with the latest updates, making us a dependable resource for all service-related needs.</li>
+    </ul>
+    <p>
+      Our dedication to service, combined with our experience, has made us a trusted name in the community. We are proud to continue our work and help bridge the gap between the common man and essential services.
+    </p>
+  </div>
+</div>
+
+<!-- Footer Section -->
+<footer class="footer-section">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h4>CONTACT US</h4>
+      <ul>
+        <li>Call us 155299 / 033-22029000</li>
+        <li>Email: contact@ippbonline.in</li>
+        <li><a href="#">Locate Us</a></li>
+        <li><a href="#">Reach Us</a></li>
+        <li><a href="#">Complaint</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Vigilance</a></li>
+        <li><a href="#">Partner With Us</a></li>
+        <li><a href="#">Service Request</a></li>
+        <li><a href="#">Follow Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>REGULATORY</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Regulatory Disclosures</a></li>
+        <li><a href="#">Code Of Commitment</a></li>
+        <li><a href="#">Website Usage Terms</a></li>
+        <li><a href="#">Disclaimer</a></li>
+        <li><a href="#">Report Unauthorized Transactions</a></li>
+        <li><a href="#">Right to Information</a></li>
+        <li><a href="#">RBI Awareness Programme</a></li>
+        <li><a href="#">DICGC Deposit Insurance</a></li>
+        <li><a href="#">Financial Literacy Week -2025</a></li>
+        <li><a href="#">CERSAI</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>MEDIA / ANNOUNCEMENTS</h4>
+      <ul>
+        <li><a href="#">Tenders</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Bank Notices</a></li>
+        <li><a href="#">Customer Awareness</a></li>
+        <li><a href="#">Fincluvation™</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>OTHER LINKS</h4>
+      <ul>
+        <li><a href="#">Important Links</a></li>
+        <li><a href="#">Bank Holidays</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+        <li><a href="#">Rates & Charges</a></li>
+        <li><a href="#">Downloads</a></li>
+        <li><a href="#">Sitemap</a></li>
+        <li><a href="#">Screen Reader Accessibility</a></li>
+        <li><a href="#">Reactivation of Dormant Accounts</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© Copyright India Post Payments Bank 2022</p>
+    <p>Site best viewed at 1366*768 resolution in I.E. 9+, Mozilla 30+, Google Chrome 30+</p>
+  </div>
+</footer>
+
+
+</body>
+</html>

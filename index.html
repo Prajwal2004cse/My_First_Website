@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S.V.S - Home</title>
+<!-- <link rel="stylesheet" href="index.css"> -->
+
+<style>
+
+body {
+  margin: 0;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  position: relative; /* Required for ::before to work correctly */
+}
+
+body::before {
+  content: "";
+  background: url('/images/svslogo.jpeg') no-repeat center center;
+  background-size: 800px auto; /* Adjust size as needed */
+  opacity: 0.06; /* Watermark transparency */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* Ensures it's behind all content */
+  pointer-events: none; /* Allows normal interaction */
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: white;
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  height: 90px;
+}
+.logo-text {
+  font-size: 32px; /* Adjusted size */
+  font-weight: bold; /* Making the text bold */
+  color: #2d2d2d; /* Dark grey color */
+  font-family: 'Serif'; /* Font family */
+  margin-left: 10px; /* Space between the logo and text */
+  margin-top: 20px;
+  color: rgb(22, 22, 197);
+}
+.top-right-logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;  
+}
+.top-right-logo img {
+  height: 90px;
+}
+.menu-bar {
+  background: linear-gradient(to right, #d9272e, #911a1f);
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 10px; /* This creates sloped/rounded edges */
+  font-weight: bold;
+  justify-content: center;
+}
+
+.menu-item {
+  margin-right: 25px;
+  cursor: pointer;
+  position: relative;
+}
+.search-box {
+  margin-top: -20px;
+  padding: 0 20px 10px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.search-box input {
+  width: 300px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.top-right {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 15px;  
+}
+.search-box {
+  margin-top: -20px;
+  padding: 0 20px 10px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-icon {
+  font-size: 18px;
+  color: #555;
+}
+
+.main-banner-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  gap: 15px;
+}
+
+.side-ad {
+  width: 20%;
+  text-align: center;
+}
+
+
+.side-ad img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.center-slider {
+  width: 60%;
+  height: 300px; /* Fixed height */
+  overflow: hidden;
+  position: relative;
+}
+
+.slider-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensures the full image fits inside the container without cropping */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+.marquee-section {
+  background: linear-gradient(to right, #d9272e, #911a1f);
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.info-cards-section {
+  margin: 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0 20px;
+}
+
+/* Each row of cards */
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Card styling */
+.info-card {
+  flex: 1 1 22%;
+  background: linear-gradient(135deg, #ffffff, #f5f5f5);
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Header */
+.info-card h3 {
+  margin-top: 0;
+  font-size: 18px;
+  color: white;
+  background: linear-gradient(to right, #d9272e, #911a1f);
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* List items */
+.info-card ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-card li {
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+  color: #333;
+  font-size: 15px;
+}
+
+.info-card li::before {
+  content: "➤";
+  position: absolute;
+  left: 0;
+  color: #d9272e;
+}
+
+/* Special cards with larger width */
+.info-card.wide {
+  flex: 1 1 30%;
+}
+
+/* Read More Button */
+.read-more {
+  margin-top: 10px;
+  background: linear-gradient(to right, #ff9800, #f57c00);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.read-more:hover {
+  background: linear-gradient(to right, #e68900, #e65100);
+}
+
+/* Paragraph inside cards (like Reach Us) */
+.info-card p {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+/* Link styling */
+.info-card a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.info-card a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .info-card {
+    flex: 1 1 100%;
+  }
+}
+
+.marquee-section {
+  background-color: #d9272e;
+  color: white; /* This controls the text color inside marquee */
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  color: #ddd;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.blink {
+  animation: blink 1s infinite;
+  color: #ddd;
+}
+
+.footer-section {
+  background: linear-gradient(to right, #d9272e, #911a1f);
+  color: white;
+  padding: 40px 20px 20px;
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-column {
+  width: 22%;
+  min-width: 200px;
+  margin-bottom: 20px;
+}
+
+.footer-column h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #fff;
+  border-bottom: 1px solid #ffa500;
+  padding-bottom: 5px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 6px;
+  color: #ddd;
+}
+
+.footer-column ul li a {
+  color: #ddd;
+  text-decoration: none;
+}
+
+.footer-column ul li a:hover {
+  color: #ffa500;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  color: #ccc;
+  border-top: 1px solid #ffa500;
+  margin-top: 20px;
+  padding-top: 10px;
+  font-size: 12px;
+}
+
+</style>
+
+</head>
+<body>
+<div class="header">
+  <div class="logo">
+    <img src="/images/svslogo.jpeg" alt="Logo Left">
+    <div class="logo-text">S.V.S Computer</div>
+  </div>
+  <div class="top-right-logo">
+    <div class="top-right">
+      <span>🎧 080-22440050</span>
+      <a href="#">About Us</a>
+      <a href="#">Locate Us</a>
+      <a href="#">ಕನ್ನಡ</a>
+      <a href="#">हिंदी</a>
+      <button>A-</button>
+      <button>A</button>
+      <button>A+</button>
+    </div>
+    <img src="/images/csclogo.webp" alt="Logo Right">
+  </div>
+</div>
+
+<div class="search-box">
+  <span class="search-icon">🔍</span>
+  <input type="text" id="search-input" placeholder="What are you looking for ?">
+</div>
+
+
+<div class="menu-bar">
+  <div class="menu-item"><a href="/Achievements.html" style="color: white;">Achievements</a></div>
+  <div class="menu-item"><a href="/Services.html" style="color: white;">Our Services</a></div>
+  <div class="menu-item"><a href="#" style="color: white;">Govt Job Application</a></div>
+  <div class="menu-item"><a href="/Service Request.html" style="color: white;">Service Request</a></div>
+  <div class="menu-item"><a href="/Contact Us.html" style="color: white;">Contact Us</a></div>
+  <div class="menu-item"><a href="#" style="color: white;">CSC E-Store</a></div>
+  <div class="menu-item"><a href="/public/login.html" style="color: white;">Login</a></div>
+</div>
+<!-- Banner Section with Side Ads -->
+<div class="main-banner-section">
+  <div class="side-ad left-ad">
+    <img src="/images/Poster8.jpg" alt="Left Ad">
+  </div>
+  
+  <div class="center-slider">
+  <img id="slider-image" src="/images/Poster1.jpg" alt="Main Slide" class="slider-img">
+</div>
+
+  
+  <div class="side-ad right-ad">
+    <img src="/images/Poster7.jpg" alt="Right Ad">
+  </div>
+</div>
+
+<!-- Marquee Section -->
+<div class="marquee-section">
+  <marquee 
+    onmouseover="this.stop();" 
+    onmouseout="this.start();"
+  >
+    <span class="blink"><a href="https://chat.whatsapp.com/BjLqE5m6WyaFC8fAsj47Wg" style="color: #ddd;"> 📢 For more govt job updates / govt Scheams / Current Affairs Join our Whatsapp group Click here </a></span>
+  </marquee>
+</div>
+
+
+<!-- Info Cards Section -->
+<div class="info-cards-section">
+
+  <!-- Top Row -->
+  <div class="card-row">
+    <div class="info-card">
+      <h3>Insurance</h3>
+      <ul>
+        <li>Vehicle Insurance (with Discounts)</li>
+        <li>Health Insurance</li>
+        <li>Life Insurance</li>
+        <li>Tearm Insurance</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>Food Licence</h3>
+      <ul>
+        <li>Basic Food Licence</li>
+        <li>State Food Licence</li>
+        <li>Central Food Licence</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>Udyam Certificate(for Loan)</h3>
+      <ul>
+        <li>Aadhaar Card</li>
+        <li>Pan Card</li>
+        <li>Bank Passbook/Checque Book/Valid Statement</li>
+      </ul>
+    </div>
+       <div class="info-card">
+      <h3>Loans</h3>
+      <ul>
+        <li>Personal Loans</li>
+        <li>Housing Loans</li>
+        <li>Site Loans</li>
+        <li>Construction Loans</li>
+        <li>Loan against property</li>
+        <li>Vehicle Loans</li>        
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>Marriage Certificate</h3>
+      <ul>
+        <li>Bride Aadhaar Card</li>
+        <li>Bride 10th Certificate</li>
+        <li>Bride witness(Father & Mother)</li>
+        <li>Bride Groom Aadhaar Card</li>
+        <li>Bride Groom 10th Certificate</li>
+        <li>Bride witness(Father & Mother)</li>
+        <li>Bride witness(Father & Mother)</li>
+        <li>Aadhaar linked mobile for otp</li>
+        <li>Photo</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>Passport</h3>
+      <ul>
+        <li>Aadhaar Card</li>
+        <li>Pan Card</li>
+        <li>Voter ID</li>
+        <li>10th Certificate</li>
+        <li>Driving Licence</li>
+      </ul>
+    </div>
+ 
+    <div class="info-card">
+      <h3>🙌 New Services</h3>
+      <ul>
+        <p><marquee class="blink" style="font-weight: bold; color:#d9272e;"> RTO Services are live now | Pan Card with in 2 hours | All types of Insurance</marquee></p>
+        <li>RTO Services are live now!!!</li>
+        <li>Paperless Pan Card with in 2 hours</li>
+        <li>All types of Insurance</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bottom Row -->
+  <div class="card-row">
+    <div class="info-card wide">
+      <h3>📢 Announcement</h3>
+      <ul>
+        <li>Request for Proposal (RFP) for the Selection of ...</li>
+        <li>RFP for hiring of Office attendants (Helpers) ...</li>
+        <li>RFP for Procurement of SIM Cards and Data Cards ...</li>
+        <li>Request for Proposal for ATM and Managed Services ...</li>
+        <li>Procurement of HSM Module on PAC Basis for IPPB ...</li>
+      </ul>
+      <button class="read-more">Read More</button>
+    </div>
+
+    <div class="info-card wide">
+      <h3>📰 News and Media</h3>
+      <ul>
+        <li>India Post Payments Bank empowers devotees ...</li>
+        <li>Aarohan 4.0 Day 1 : Postal Department discuss ...</li>
+        <li>Aarohan 4.0 Day 2: Two-day meet of senior func ...</li>
+        <li>India Post Payments Bank launches ‘Fincluvation’</li>
+        <li>India Post Payments Bank Partners HDFC Bank for ...</li>
+      </ul>
+      <button class="read-more">Read More</button>
+    </div>
+
+    <div class="info-card wide">
+      <h3>📞 Reach Us</h3>
+      <p>To open a new account or know more about our Product and Services:</p>
+      <ul>
+        <li>📞 Call us: <strong>9482272307 / 080-22440050</strong></li>
+        <li>📧 Email: <a href="vcyberblr@gmail.com">vcyberblr@gmail.com</a></li>
+        <li>📍 <a href="#">Locate Us</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer Section -->
+<footer class="footer-section">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h4>CONTACT US</h4>
+      <ul>
+        <li>Call us 9482272307 / 080-22440050</li>
+        <li>Email: vcyberblr@gmail.com</li>
+        <li><a href="#">Locate Us</a></li>
+        <li><a href="#">Reach Us</a></li>
+        <li><a href="#">Complaint</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Vigilance</a></li>
+        <li><a href="#">Partner With Us</a></li>
+        <li><a href="/Service Request.html">Service Request</a></li>
+        <li><a href="https://chat.whatsapp.com/BjLqE5m6WyaFC8fAsj47Wg">Follow Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>REGULATORY</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Regulatory Disclosures</a></li>
+        <li><a href="#">Code Of Commitment</a></li>
+        <li><a href="#">Website Usage Terms</a></li>
+        <li><a href="#">Disclaimer</a></li>
+        <li><a href="#">Report Unauthorized Transactions</a></li>
+        <li><a href="#">Right to Information</a></li>
+        <li><a href="#">RBI Awareness Programme</a></li>
+        <li><a href="#">DICGC Deposit Insurance</a></li>
+        <li><a href="#">Financial Literacy Week -2025</a></li>
+        <li><a href="#">CERSAI</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>MEDIA / ANNOUNCEMENTS</h4>
+      <ul>
+        <li><a href="#">Tenders</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Bank Notices</a></li>
+        <li><a href="#">Customer Awareness</a></li>
+        <li><a href="#">Fincluvation™</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>OTHER LINKS</h4>
+      <ul>
+        <li><a href="#">Important Links</a></li>
+        <li><a href="#">Bank Holidays</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+        <li><a href="#">Rates & Charges</a></li>
+        <li><a href="#">Downloads</a></li>
+        <li><a href="#">Sitemap</a></li>
+        <li><a href="#">Screen Reader Accessibility</a></li>
+        <li><a href="#">Reactivation of Dormant Accounts</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+  &copy; 2025 S.V.S Computer. All rights reserved.
+  </div>
+</footer>
+
+
+
+<script>
+  const placeholderText = "What are you looking for ?";
+  const input = document.getElementById("search-input");
+  let index = 0;
+
+  function typePlaceholder() {
+    if (index <= placeholderText.length) {
+      input.setAttribute("placeholder", placeholderText.substring(0, index));
+      index++;
+    } else {
+      index = 0;
+      input.setAttribute("placeholder", ""); // Clear before restarting
+    }
+    setTimeout(typePlaceholder, 150); // Adjust speed here
+  }
+
+  window.onload = typePlaceholder;
+</script>
+
+<script>
+  const images = [    
+    '/images/Poster2.jpg',
+    '/images/Poster3.jpg',
+    '/images/Poster4.jpg',
+    '/images/Poster5.jpg',
+    '/images/Poster6.jpg',
+  ];
+  let currentIndex = 0;
+  const slider = document.getElementById('slider-image');
+
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % images.length;
+    slider.src = images[currentIndex];
+  }, 3000); // Change image every 3 seconds
+</script>
+
+
+</body>
+</html>
